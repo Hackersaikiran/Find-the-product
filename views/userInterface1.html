@@ -143,7 +143,7 @@ let shops = [
             'Antacids', 'Loperamide (Imodium)', 'Cetirizine', 'Ranitidine', 'Hydrocortisone cream', 
             'Antiseptic solution', 'Cough syrup', 'Diphenhydramine (Benadryl)', 'Esomeprazole (Nexium)', 
             'Simethicone', 'Saline nasal spray', 'Hydrogen peroxide', 'Calamine lotion', 'Bacitracin or Neosporin', 
-            'Oral rehydration salts (ORS)', 'Glycerin suppositories', 'Multivitamins'
+            'Oral rehydration salts (ORS)', 'Glycerin suppositories', 'Multivitamins',"vitamin E"
         ] 
     },
     { 
@@ -173,7 +173,7 @@ let shops = [
             'Gabapentin', 'Amitriptyline', 'Quetiapine', 'Baclofen', 'Celecoxib', 'Desmopressin', 'Memantine', 
             'Tamsulosin', 'Topiramate', 'Brimonidine', 'Pegloticase', 'Plerixafor colony stimulating factor', 
             'Anakinra', 'Icatibant', 'Rituximab', 'Pomalyst (Pomalidomide)', 'Voriconazole', 'Methotrexate', 
-            'Natalizumab', 'Alemtuzumab'
+            'Natalizumab', 'Alemtuzumab',"vitamin E",
         ]
     },
     { 
@@ -183,7 +183,7 @@ let shops = [
             'Idursulfase', 'Epoprostenol', 'Vismodegib', 'Medulloblastoma', 'Colchicine', 'Dantrolene', 
             'Sodium oxybate', 'Lomitapide', 'Pentoxifylline', 'Vorinostat', 'Pimavanserin', 'Emapalumab', 
             'Tafamidis', 'Teduglutide', 'Metyrosine', 'Eteplirsen', 'Migalastat', 'Elagolix', 'Mazindol', 
-            'Mitoxantrone', 'Cyclosporine'
+            'Mitoxantrone', 'Cyclosporine',
         ] 
     },
     {
@@ -193,7 +193,7 @@ let shops = [
             'Levothyroxine', 'Metoprolol', 'Amlodipine', 'Losartan', 'Clopidogrel', 'Ciprofloxacin', 
             'Azithromycin', 'Clindamycin', 'Prednisone', 'Albuterol', 'Amiodarone', 'Digoxin', 
             'Hydralazine', 'Nitroglycerin', 'Simvastatin', 'paracetemol','Rosuvastatin', 'Carvedilol', 'Valsartan', 
-            'Lisinopril', 'Hydrochlorothiazide'
+            'Lisinopril', 'Hydrochlorothiazide',"iron tablets"
         ]
     },
     { 
@@ -215,7 +215,7 @@ let shops = [
             'Ferric pyrophosphate citrate', 'Ferric citrate', 'Polysaccharide-iron complex', 
             'Iron protein succinylate', 'Heme iron polypeptide', 'Carbonyl iron', 'Iron amino acid chelate', 
             'Iron bisglycinate', 'Iron glycine sulfate', 'Iron (III)-hydroxide polymaltose complex', 
-            'Iron polymaltose'
+            'Iron polymaltose',"iron tablets"
         ]
     }
 ];
@@ -247,7 +247,9 @@ document.getElementById('shopLocatorForm').addEventListener('submit', function(e
             shopName.className = 'shop-name';
             shopName.textContent = shop.name;
 
-            const shopLocation = document.createElement('div');
+            const shopLocation = document.createElement('a');
+            shopLocation.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.location)}`;
+            shopLocation.target = '_blank';
             shopLocation.textContent = shop.location;
 
             shopItem.appendChild(shopName);
