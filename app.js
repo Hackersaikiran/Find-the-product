@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/myapp', { useNewUrlParser: true, use
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('docs'));
 app.use('/uploads', express.static('uploads'));
 app.use(session({
   secret: 'your_secret_key',
@@ -53,7 +53,7 @@ app.get('/shopkeeperInterface', (req, res) => {
 
 // Default route
 app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile('index.html', { root: 'docs' });
 });
 
 // Start server
