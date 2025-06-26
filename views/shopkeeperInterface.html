@@ -12,7 +12,7 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
-      background: url('/shop.jpg') no-repeat center center;
+      background: url('shop.jpg') no-repeat center center;
       background-size: cover;
       overflow: auto;
     }
@@ -76,7 +76,7 @@
 </head>
 <body>
   <h1>Welcome Shopkeeper</h1>
-  <form id="productForm" action="/products" method="POST" enctype="multipart/form-data">
+  <form id="productForm" action="products" method="POST" enctype="multipart/form-data">
     <label for="productName">Product Name:</label>
     <input type="text" id="productName" name="productName" required>
     <label for="productCount">Product Count:</label>
@@ -180,7 +180,7 @@
       formData.append('productCount', productCount);
       formData.append('productImage', productImage);
 
-      const response = await fetch('/products', {
+      const response = await fetch('products', {
         method: 'POST',
         body: formData,
       });
