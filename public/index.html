@@ -17,17 +17,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #391be1;
-      padding: 10px 10px;
-      color: white;
+      background-color: rgba(0,0,0,0) ;
+      padding: 10px 19px;
+      color: rgb(2, 2, 2);
     }
     .navbar a {
-      color: white;
+      color: rgb(1, 1, 1);
       text-decoration: none;
       padding: 8px 16px;
     }
     .navbar a:hover {
-      background-color: #575757;
+      background-color: #2f2fda;
       border-radius: 4px;
     }
     .navbar .login-dropdown {
@@ -38,8 +38,8 @@
       display: none;
       position: absolute;
       right: 0;
-      background-color: #f9f9f9;
-      min-width: 160px;
+      background-color:transparent;
+      min-width: 60px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
     }
@@ -50,7 +50,7 @@
       display: block;
     }
     .dropdown-content a:hover {
-      background-color: #f1f1f1;
+      background-color:transparent;
     }
     .container {
       padding: 20px;
@@ -67,14 +67,22 @@
       width: 300px;
       display: none; /* Initially hide the About Us section */
     }
+    #exploreButton{
+      border-radius: 40px;
+      position:relative;
+      
+      left:150px;
+      top:100px;
+
+    }
     
   </style>
 </head>
 
-<body style="background: url('/background.jpeg') no-repeat center center / cover; height:725px;">
+<body style="background: url('/background.png') no-repeat center center / cover; height:658px;">
   <div class="navbar">
     <a href="#" id="aboutUsButton">About Us</a>
-    <h2 style="padding-top: 6px; margin-top:1px; margin-bottom:3px">Find the Product</h2> 
+    <h2 style="padding-top: 6px; margin-top:1px; margin-bottom:3px;">Find the Product</h2> 
     <div class="login-dropdown">
       <a href="#" class="dropdown-button" id="loginButton">Login</a>
       <div class="dropdown-content" id="dropdownContent">
@@ -85,7 +93,7 @@
   </div>
   <div>
     <div class="container">
-      <h1>Welcome</h1>
+      <h1>welcome</h1>
       <br>
       <button type="button" class="btn btn-primary" id="exploreButton">Explore</button>
     </div>
@@ -107,6 +115,11 @@
   document.getElementById('loginButton').addEventListener('click', function() {
     var dropdownContent = document.getElementById('dropdownContent');
     dropdownContent.style.display = 'block';
+    var aboutUsSection = document.getElementById('dropdownContent');
+    aboutUsSection.style.display = 'block';
+    setTimeout(function() {
+      aboutUsSection.style.display = 'none';
+    }, 3000); // Hide About Us section after 3 seconds
   });
 
   document.getElementById('aboutUsButton').addEventListener('click', function() {

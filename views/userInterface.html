@@ -73,13 +73,16 @@ button:hover {
     border-radius: 4px;
 }
 
-#shopList ul {
-    list-style-type: none;
-    padding: 0;
+#shopList .shop-item {
+    margin-bottom: 10px;
 }
 
-#shopList ul li {
+#shopList .shop-item div {
     margin-bottom: 5px;
+}
+
+.shop-name {
+    font-weight: bold;
 }
 
 .nav-buttons {
@@ -106,6 +109,7 @@ button:hover {
 </head>
 <body>
 <div class="container">
+    
     <div class="nav-buttons">
         <button id="localGoodsButton">Local Goods</button>
         <button id="medicinesButton">Medicines</button>
@@ -135,7 +139,7 @@ const shops = [
             "Rice (Basmati)", "Wheat Flour", "sugar", "tur dal", "ghee", "Milk", "Bread", "Spices (Turmeric)", 
             "Spices (Chili)", "Soap", "Shampoo", "Toothpaste", "Detergent Powder", "Dishwash Bar", "Biscuits (Marie)", 
             "Toilet Cleaner", "Floor Cleaner", "Face Wash", "Hair Oil", "Coconut Oil", "Mustard Oil", "Noodles", 
-            "Ketchup", "Mayonnaise", "Pickle", "Jam", "Cornflakes", "Oats", "Rava (Semolina)", "Vermicelli", 
+            "Ketchup", "Mayonnaise", "chicken Pickle", "Jam", "Cornflakes", "Oats", "Rava (Semolina)", "Vermicelli", 
             "Pasta", "Green Gram", "Black Gram", "Detergent Bar", "Tissues", "Paper Napkins", "Aluminum Foil", 
             "Cling Film", "Garbage Bags", "Diapers", "Baby Powder", "Sanitary Pads", "Handwash"
         ]
@@ -146,7 +150,7 @@ const shops = [
         "location": "Rd Number 6, Old Vadlapudi, Gajuwaka, Visakhapatnam, Andhra Pradesh 530046",
         "products": [
             "Rice", "Lays", "Wheat flour", "Lentils (Dal)", "Spices", "Cooking oils", "salt", "sugar", 
-            "tea", "Coffee", "Milk"
+            "tea", "Coffee", "Milk", "pickle"
         ]
     },
     {
@@ -167,7 +171,66 @@ const shops = [
             "Spices (Chili)", "Soap", "Shampoo", "Toothpaste", "Detergent Powder", "Dishwash Bar", "Biscuits (Marie)", 
             "Toilet Cleaner", "Floor Cleaner", "Face Wash", "Hair Oil"
         ]
-    }
+    },
+    {
+    
+    "name ": "sukhmani shop",
+    "location":"Gurudwara shop.no.5",
+    "products" : ["Rice","Pulse","Flour","Cooking Oil","Spices","Tea","Sugar","Biscuit","Instant Noodle","Canned Goods" ]
+    
+},
+
+{
+    
+    "name ": "Dashmesh Pagrian",
+    "location":"hanuman rd,behind YMCA,near gurudwara",
+    "products" : ["Potato Chips","Namkeen","Biscuits","Peanuts","Popcorn","Chocolate","Puffed Rice ","Crispy Snacks ","Instant Noodles","Cookies"],
+    
+
+},
+
+{
+    
+    "name ": "Hirawats ",
+    "location":"clothing store,kaizen buliding,beside IDBI bank",
+    "products" : ["Sunflower Oil","Mustard Oil","Soybean Oil","Groundnut (Peanut) Oil","Coconut Oil","Olive Oil"],
+    
+},
+
+{
+    
+    "name ": "Santhoshi Mata departmental store ",
+    "location":"Grocery store,Ganesh Height apts 53-11-10",
+    "products" : [ "Sesame (Til) Oil","Rice Bran Oil","Palm Oil","Canola Oil","Corn Oil","Flaxseed Oil","Avocado Oil","Seaweed Snacks","Dried Fruit","Cheese and Crackers","Mini Sausage or Salami Sticks"]
+    
+},
+
+{
+    
+    "name ": "Kumar kirana store ",
+    "location":"Flank Rd,neat Panchayati Gurudwara",
+    "products" : [ "Almond Oil","Walnut Oil","Grape Seed Oil","Argan Oil", "Granola Bars","Roasted Chickpeas","Mini Sandwich Crackers","Rice Cakes (plain or flavored)"],
+    
+},
+
+{
+    
+    "name ": "Raja Kirana Stores",
+    "location":" S.S.S.Ngr,bear Panchayati Gurudwara",
+    "products" : [ "Hemp Seed Oil","Macadamia Nut Oil","Pumpkin Seed Oil","eef Jerky","Veggie Chips (e.g., beetroot, sweet potato)", "Rice Crackers,Chocolate-covered Pretzels,Fruit Leather"],
+    
+},
+
+{
+    
+    "name ": "Gopi General stores ",
+    "location":"Maul road,Ramakrishna chemburkar Marg",
+    "products" : ["Potato Chips","Popcorn (buttered or flavored)","Pretzels","Trail Mix (nuts, seeds, dried fruits)","Cheese Puffs","Tortilla Chips with Sals",],
+    
+}
+
+
+
 ];
 </script>
 
@@ -187,13 +250,25 @@ document.getElementById('shopLocatorForm').addEventListener('submit', function(e
     shopListDiv.innerHTML = '<h2>Available Shops</h2>';
 
     if (matchedShops.length > 0) {
-        let ul = document.createElement('ul');
         matchedShops.forEach(shop => {
-            let li = document.createElement('li');
-            li.textContent = `${shop.name} - ${shop.location}`;
-            ul.appendChild(li);
+            let shopItem = document.createElement('div');
+            shopItem.className = 'shop-item';
+
+            let shopName = document.createElement('div');
+            shopName.className = 'shop-name';
+            shopName.textContent = shop.name;
+
+            let shopLocation = document.createElement('div');
+            let locationLink = document.createElement('a');
+            locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.location)}`;
+            locationLink.target = '_blank';
+            locationLink.textContent = shop.location;
+            shopLocation.appendChild(locationLink);
+
+            shopItem.appendChild(shopName);
+            shopItem.appendChild(shopLocation);
+            shopListDiv.appendChild(shopItem);
         });
-        shopListDiv.appendChild(ul);
     } else {
         shopListDiv.innerHTML += '<p>No shops found for the given product and location.</p>';
     }
